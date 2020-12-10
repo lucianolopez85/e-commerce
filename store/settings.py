@@ -10,6 +10,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'pedido.apps.PedidoConfig',
     'produto.apps.ProdutoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
