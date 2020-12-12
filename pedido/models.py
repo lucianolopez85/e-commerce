@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Pedido(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     total = models.FloatField()
     qtd_total = models.PositiveIntegerField()
@@ -19,12 +20,12 @@ class Pedido(models.Model):
         )
     )
 
-
     def __str__(self):
         return f'Pedido N. {self.pk}'
 
 
 class ItemPedido(models.Model):
+
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE)
     produto = models.CharField(max_length=255)
     produto_id = models.PositiveIntegerField()
@@ -34,7 +35,6 @@ class ItemPedido(models.Model):
     preco_promocional = models.FloatField(default=0)
     quantidade = models.PositiveIntegerField()
     imagem = models.CharField(max_length=2000)
-
 
     def __str__(self):
         return f'Item do {self.pedido}'

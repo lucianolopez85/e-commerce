@@ -1,3 +1,4 @@
+from django.contrib.messages import constants
 import os
 from pathlib import Path
 
@@ -10,6 +11,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'perfil.apps.PerfilConfig',
     'pedido.apps.PedidoConfig',
     'produto.apps.ProdutoConfig',
     'django.contrib.admin',
@@ -18,9 +20,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
 
-    #TODO: Romover debug
+
+    # TODO: Romover debug
     'debug_toolbar',
 ]
 
@@ -33,7 +35,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    #TODO: Romover debug
+    # TODO: Romover debug
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
@@ -42,7 +44,7 @@ ROOT_URLCONF = 'store.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,8 +103,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-from django.contrib.messages import constants
 
 
 MESSAGE_TAGS = {

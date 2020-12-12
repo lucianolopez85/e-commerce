@@ -12,5 +12,6 @@ class PedidoAdmin(admin.ModelAdmin):
         ItemPedidoInline
     ]
 
+
 admin.site.register(models.Pedido, PedidoAdmin)
 admin.site.register(models.ItemPedido)
