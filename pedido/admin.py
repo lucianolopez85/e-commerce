@@ -2,7 +2,7 @@ from django.contrib import admin
 from . import models
 
 
-class ItemPedidoInline(admin.TabularInline):
+class ItemPedidoInline(admin.StackedInline):
     model = models.ItemPedido
     extra = 1
 

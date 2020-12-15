@@ -3,13 +3,11 @@ from django.contrib.auth.models import User
 
 
 class Pedido(models.Model):
-    produto = models.ForeignKey(Produto, on_delete=models.)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     total = models.FloatField()
     qtd_total = models.PositiveIntegerField()
     status = models.CharField(
-        default="C",
-        max_length=1,
+        default="C", max_length=1,
         choices=(
             ('A', 'Aprovado'),
             ('C', 'Criado'),
@@ -21,7 +19,7 @@ class Pedido(models.Model):
     )
 
     def __str__(self):
-        return f'Pedido N. {self.pk}'
+        return f'Pedido N. {self.pk} - {self.usuario}'
 
 
 class ItemPedido(models.Model):
