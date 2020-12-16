@@ -1,0 +1,63 @@
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <nav id="nav" class="navbar navbar-light navbar-expand-lg" style=" background-color: #ffffff;" >
+            <img class="p-1" src="/media/img/rlc.png" >
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNav" class="collapse navbar-collapse" >
+                <ul id="lista-menu" class="navbar-nav ">
+
+                    <li class="nav-item " >
+                        <a class="nav-link " href="#"  >                           
+                            Contato
+                        </a>
+                    </li> 
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#" >                           
+                            Carrinho
+                        </a>
+                    </li> 
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#" >
+                            Pedidos
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="#" >
+                            Login
+                        </a>
+                    </li>   
+
+
+                    <!-- acordion categoria -->
+                    <div class="acordion" id="acordion-ctg">
+                        <li id="navItemCategoria" class="nav-item ">
+                            <a class="nav-link " href="#" data-toggle="collapse" data-target="#contentLogin" aria-expanded="true" aria-controls="collapseExample">                           
+                                Categoria
+                            </a>
+                        </li>
+                        <div class="collapse" id="contentLogin" data-parent="#acordion-ctg" aria-expanded="true" aria-controls="collapseExample" >
+                            <a class="dropdown-item" href="#">Colecionáveis</a>
+                            <a class="dropdown-item" href="#">Miniatura</a>
+                            <a class="dropdown-item" href="#">Blocos de montar</a>
+                            <a class="dropdown-item" href="#">Chaveiro</a>                                    
+                            <a class="dropdown-item" href="#">Adesivo</a>
+                        </div>
+                    </div>
+                
+                </ul>
+
+                <!-- pesquisar -->
+                <form class="form-inline ">    
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-0"  type="search"  placeholder="Buscar..." aria-label="search">                
+                    </div>   
+
+                </form>
+            </div>                
+        </nav>
+    </div>
+</div>
