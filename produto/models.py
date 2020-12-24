@@ -1,9 +1,9 @@
 from django.conf import settings
 import os
-from PIL import Image
 from django.db import models
-from django.utils.text import slugify
-from utils import utils
+from stdimage import StdImageField, JPEGField
+from django.db.models import signals
+from django.template.defaultfilters import slugify
 
 
 class Categoria(models.Model):
@@ -13,43 +13,33 @@ class Categoria(models.Model):
         return self.nome
 
 
+class Subcateg(models.Model):
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome
+
+
 class Produto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    nome = models.CharField(max_length=255)
+    subcateg = models.ForeignKey(Subcateg, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=50)
     descricao_curta = models.TextField(max_length=255)
     descricao_longa = models.TextField()
-    imagem = models.ImageField(
-        upload_to='produto_imagens/%Y/%m/', blank=True, null=True)
+    imagem = StdImageField(
+        upload_to='produto_imagens/%Y/%m/', blank=True, null=True, variations={'thumb': (200, 232)})
     slug = models.SlugField(unique=True, blank=True, null=True)
-    preco_marketing = models.FloatField(verbose_name='Preço')
-    preco_marketing_promocional = models.FloatField(
-        default=0, verbose_name='Preço Promo.')
-    tipo = models.CharField(default='V', max_length=1,
-                            choices=(
-                                ('V', 'Variável'),
-                                ('S', 'Simples'),
-                            )
-                            )
+    preco_marketing = models.DecimalField(
+        max_digits=8, decimal_places=2, verbose_name='Preço')
+    vezes_sem_juros = models.DecimalField(
+        max_digits=2, decimal_places=0)
+    preco_marketing_promocional = models.DecimalField(
+        max_digits=8, decimal_places=2, default=0, verbose_name='Preço Promo.')
 
-    def get_preco_formatado(self):
-        return utils.formata_preco(self.preco_marketing)
-    get_preco_formatado.short_description = 'Preço'
-
-    def get_preco_promocional_formatado(self):
-        return utils.formata_preco(self.preco_marketing_promocional)
-    get_preco_promocional_formatado.short_description = 'Preço Promo.'
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            slug = f'{slugify(self.nome)}'
-            self.slug = slug
-
-        super().save(*args, **kwargs)
-
-        max_image_size = 800
-
-        if self.imagem:
-            self.resize_image(self.imagem, max_image_size)
+    @property
+    def valor_dividido(self):
+        return self.preco_marketing/self.vezes_sem_juros
 
     def __str__(self):
         return self.nome
@@ -68,3 +58,10 @@ class Variacao(models.Model):
     class Meta:
         verbose_name = 'Variação'
         verbose_name_plural = 'Variações'
+
+
+def save(signal, instance, sender, **kwargs):
+    instance.slug = slugify(instance.nome)
+
+
+signals.pre_save.connect(save, sender=Produto)

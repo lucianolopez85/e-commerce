@@ -11,6 +11,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'stdimage',
     'perfil.apps.PerfilConfig',
     'pedido.apps.PedidoConfig',
     'produto.apps.ProdutoConfig',
@@ -64,7 +65,7 @@ WSGI_APPLICATION = 'store.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_store',
+        'NAME': 'dbstore',
         'USER': 'postgres',
         'PASSWORD': '0120',
         'HOST': 'localhost',

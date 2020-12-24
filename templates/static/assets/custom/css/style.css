@@ -1,11 +1,19 @@
 body, html{
-    margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
 }
-.container-fluid{
-    height: 100%;
-    background-color:  rgb(255, 245, 227);
+container{
+    width: 100%;
+    background-color: rgb(230, 230, 230);
+    display: grid;
+    grid-template-rows: 5vh auto 10vh;
+    grid-template-areas: "n"
+                         "m"
+                         "f";
+}
+#nav{
+    box-shadow: 2px 2px 12px rgb(165, 165, 165);
+    width: 100%;
 }
 #lista-menu{
     flex-wrap: wrap;
@@ -14,45 +22,67 @@ body, html{
     justify-content: space-around;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr
 }
-#nav{
-    display:static;
-    border-radius: 4px;
-    box-shadow: 2px 2px 12px rgb(221, 186, 121);
-    margin: 10px 20px 0px 20px ;
-    width: 100vw;
-}
 #navItemCategoria{
     width: 180px;
 }
-.flex-item{
-    width:  180px;
-    height: 310px;
+main{
+    grid-area: m;
+    display: flex;
+    gap: 10px;
+}
+.menu{
+    text-align: center;
+    width: 150px;
+}
+.grupo-card{
+    background-color:  rgb(230, 230, 230);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
 }
 .card{
-    width: 160px;
-    height: 290px;
-    margin: 5px;
-    box-shadow: 2px 2px 8px rgb(221, 186, 121);
+    display: flex;
+    width: 230px;
+    height: 350px;
+    /* background-color: lightskyblue; */
 }
-.btn{
-    display: block;
+.card-item{
+    display: grid;
+    height: 100%;
+    grid-template-rows: 2fr 1fr;
+    /* background-color: blue; */
 }
-p{  
+.imagem{    
+    display: flex;
+    justify-content: center;
+    /* background-color: aqua; */
+}
+.texto{
+    padding: 10px;
+    height: 100%;
+    /* background-color: khaki; */
+}
+.title-card{
+    display: flex;
+}
+.title-card p{
+    font-size: 12px;
+    color: rgb(0, 145, 34);
+    padding-left: 10px;
+}
+.text-card{
+    padding: 0px;
     font-size: 12px;
 }
-.heading{
-    width: 100vw;
-    letter-spacing: 3px;
-    font-size: 2rem;
-    text-align: center;
-    padding-top: 20px;
-    position: relative;
-    color: #333;
+
+.card:hover{
+    box-shadow: 2px 2px 12px rgb(165, 165, 165);
 }
-hr{
-	border: 0;
-    border-top: 1px solid #333;
-    width: 80vw;
+footer{
+    padding: 0px;
+    margin: 0px;
+    grid-area: f;
 }
 .footer{
     display: flex;
@@ -77,8 +107,8 @@ hr{
 }
 #footerRedesSociais{
     display: flex;
-    height: 50%;
-    justify-content: space-around;
+    /* height: 50%;
+    justify-content: space-around; */
 }
 #footerTitulo{
     justify-content: center;
@@ -87,14 +117,20 @@ hr{
     height: 50%;
 }
 
-h4{
+h4{ 
     height: 30%;
     display: flex;
     align-items: center;
+    width: 55px;
+}
+.col-12 p{
+    font-size: 12px;
 }
 @media (max-width: 768px) { 
     #footerTitulo{
         display: none;
     }
+    .col-12{
+        display: none;
+    }
 }
-

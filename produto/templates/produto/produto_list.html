@@ -1,1 +1,45 @@
 {% extends 'base.html' %}
+
+{% block conteudo %}
+    <div class="d-flex" style="width: 150px; height: auto; flex-wrap: wrap;">
+    {% for p in object_list %}
+        <div class="menu" style="height: auto; padding-bottom:  10px;">
+            <hr width="100%">
+            <h6>{{p.categoria}}</h6>            
+            {% for c in categ %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault" style="width: 110px;">
+                 {{ c}}
+                </label>
+            </div>
+            {%endfor%}
+        </div>
+    {% endfor %}
+    </div>
+    <div class="grupo-card">
+        {% for p in object_list%}
+        <a href="#"></a>
+            <div class="card">                        
+                <div class="card-item" style="background-color: white;">
+                    {% if p.imagem %}
+                    <div class="d-flex justify-content-center" style="height: 232px;">
+                        <img src="{{ p.imagem.url }}" alt="{{p.nome}}" style="height: 100%;" >
+                    </div>
+                        
+                    {% endif %}                          
+                    <div class="texto">  
+                        <div class="title-card">
+                            <h5> R$ {{ p.preco_marketing }}</h5>
+                            <p> {{ p.vezes_sem_juros }}x R${{p.valor_dividido | floatformat:2}} sem juros</p>
+                        </div>                                              
+                        <p class="text-card">{{ p.nome }}</p>
+                        <p class="text-card">Categoria: {{ p.subcateg }} </p>
+                        
+                    </div>                    
+                </div>                    
+            </div>
+        </a>
+        {% endfor %}    
+    </div>            
+{% endblock %}

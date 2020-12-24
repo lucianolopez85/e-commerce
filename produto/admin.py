@@ -12,9 +12,14 @@ class VariacaoInline(admin.StackedInline):
     extra = 0
 
 
+class SubcategInline(admin.StackedInline):
+    model = models.Subcateg
+    extra = 0
+
+
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = ['nome', 'descricao_curta',
-                    'get_preco_formatado', 'get_preco_promocional_formatado', 'categoria']
+                    'preco_marketing', 'preco_marketing_promocional', 'slug', 'categoria']
     inlines = [
         VariacaoInline
     ]
@@ -23,3 +28,4 @@ class ProdutoAdmin(admin.ModelAdmin):
 admin.site.register(models.Produto, ProdutoAdmin)
 admin.site.register(models.Categoria)
 admin.site.register(models.Variacao)
+admin.site.register(models.Subcateg)
